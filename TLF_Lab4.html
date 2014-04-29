@@ -4,20 +4,34 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>TLF Lab 4 (Lab 2.1)</title>
 <style>
-body{
+body, h1{
 	font:Tahoma, Geneva, sans-serif;
 	}
 
 #main a {
-	font: 1.5em/1.2;
+	font: 1.5em/1.2 Tahoma, Geneva, sans-serif;
 	color:green;
 	margin: .5em;
 	text-decoration:none;
 	}
 	
-#pic {width:400px; height:300px; size:cover;}
+#imgcontainer
+     {
+      width:400px;
+     height:300px; 
+     display:block; 
+     position:relative;
+     overflow:hidden;
+     }
+#imgcontainer img 
+    {
+     position:absolute;
+     top:0;
+     left:0; 
+     width:100%;
+     }*/
 
-#caption {font: 1em/1.2; }
+#caption {font: 1em/1.2 Tahoma, Geneva, sans-serif; }
 
 
 </style>
@@ -33,35 +47,38 @@ body{
 </nav>
 
 <figure>
+<div id="imgcontainer">
 <img id="pic" src="img/jamaica1.gif" alt="Gallery of Images"/>
-
+</div>
 <figcaption id="caption">My first image.</figcaption>
 </figure>
 
 <script>
-	window.onload = init;
-	function init(e)
-	{
-		//this first line is to collect all the anchor tags in the nav
-		var links = document.querySelectorAll('#main a');
-		for(var i =0; i<links.length; i++){
-			links[i].onclick = changePic;
-		}	
-	}
+	var gallery= {
 	
-	function changePic(e){
+		init: function(e)
+		{
+			//this first line is to collect all the anchor tags in the nav
+			var links = document.querySelectorAll('#main a');
+			for(var i =0; i<links.length; i++){
+				links[i].onclick = gallery.changePic;
+			}	
+		},
 		
-		e.preventDefault();
-		
-		var pic = document.querySelector('#pic')
-		var caption = document.getElementById('caption');
-		
-		pic.src = e.target.href;
-		caption.firstChild.nodeValue = e.target.title;
-		
+		changePic: function(e){
+			
+			e.preventDefault();
+			
+			var pic = document.querySelector('#pic')
+			var caption = document.getElementById('caption');
+			
+			pic.src = e.target.href;
+			caption.firstChild.nodeValue = e.target.title;
+			
+		}
 	}
 
-
+	window.onload = gallery.init;
 </script>
 </body>
 </html>
