@@ -8,23 +8,27 @@ body, h1{
 	font:Tahoma, Geneva, sans-serif;
 	}
 
-#main a {
-	font: 1.5em/1.2 Tahoma, Geneva, sans-serif;
+#main a, #albums a {
+	font: 1.25em/1 Tahoma, Geneva, sans-serif;
 	color:green;
 	margin: .5em;
 	text-decoration:none;
 	}
+
+#albums a {
+	color:#060;
+	font: 1.5em/1.2;
+	}
 	
-#imgcontainer
-     {
+#imgcontainer {
       width:400px;
      height:300px; 
      display:block; 
      position:relative;
      overflow:hidden;
      }
-#imgcontainer img 
-    {
+
+#imgcontainer img {
      position:absolute;
      top:0;
      left:0; 
@@ -33,25 +37,49 @@ body, h1{
 
 #caption {font: 1em/1.2 Tahoma, Geneva, sans-serif; }
 
+.hide{
+	display:none;
+	}
+
 
 </style>
 </head>
 
 <body>
-<h1>Lab 4: April 29<sup>th</sup>, 2014</h1>
-
-<nav id="main">
-	<a href="img/jamaica1.gif" title="My first image.">Pic1</a>
-    <a href="img/jamaica2.jpg" title="My second image.">Pic2</a>
-    <a href="img/jamaica3.jpg" title="My third image.">Pic3</a>
-</nav>
-
-<figure>
-<div id="imgcontainer">
-<img id="pic" src="img/jamaica1.gif" alt="Gallery of Images"/>
-</div>
-<figcaption id="caption">My first image.</figcaption>
-</figure>
+    <h1>Lab 4: April 29<sup>th</sup>, 2014</h1>
+    
+    <nav id="albums">
+    	<a href="#album1" title="Jamaica">Jamaica</a>
+        <a href="#album2" title="Avatar: The Last Airbender">The Last Airbender</a>
+        <a href="#album3" title="Naruto">Naruto Fan Art</a>
+    </nav>
+    
+    <nav id="main">
+        <div id="album1">
+        <a href="img/jamaica1.gif" title="My first image.">Pic1</a>
+        <a href="img/jamaica2.jpg" title="My second image.">Pic2</a>
+        <a href="img/jamaica3.jpg" title="My third image.">Pic3</a>
+        </div>
+        
+        <div id="album2">
+        <a href="img/jamaica1.gif" title="My first image.">Aang</a>
+        <a href="img/jamaica2.jpg" title="My second image.">Katara</a>
+        <a href="img/jamaica3.jpg" title="My third image.">Team</a>
+        </div>
+        
+        <div id="album3">
+        <a href="img/jamaica1.gif" title="My first image.">Naruto</a>
+        <a href="img/jamaica2.jpg" title="My second image.">Sasuke</a>
+        <a href="img/jamaica3.jpg" title="My third image.">Sakura</a>
+        </div>
+    </nav>
+    
+    <figure>
+    <div id="imgcontainer">
+    <img id="pic" src="img/jamaica1.gif" alt="Gallery of Images"/>
+    </div>
+    <figcaption id="caption">My first image.</figcaption>
+    </figure>
 
 <script>
 	var gallery= {
@@ -62,7 +90,22 @@ body, h1{
 			var links = document.querySelectorAll('#main a');
 			for(var i =0; i<links.length; i++){
 				links[i].onclick = gallery.changePic;
+			}
+			
+			//setup links in albums
+			var albums = document.querySelectorAll('#albums a');
+			for(var j =0; j<albums.length; j++){
+				albums[j].onclick = gallery.changeAlbum;
+			}
+			
+			//hide all the album divs except the first one
+			var divs = document.querySelectorAll('#main div');
+			for(var k =0; k<divs.length; k++){
+				divs[k].classList.add('hide');
 			}	
+			
+			divs[0].classList.remove('hide');
+			
 		},
 		
 		changePic: function(e){
@@ -74,6 +117,21 @@ body, h1{
 			
 			pic.src = e.target.href;
 			caption.firstChild.nodeValue = e.target.title;
+			
+		},
+		
+		changeAlbum: function(e){
+			
+			e.preventDefault();
+			
+			//hide all the album divs
+			var divs = document.querySelectorAll('#main div');
+			for(var i =0; i<divs.length; i++){
+				divs[i].classList.add('hide');
+			}		
+			
+			//show the selected album
+			divs [e.target].classList.remove('hide');
 			
 		}
 	}
