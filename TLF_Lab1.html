@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>TLF Lab 1</title>
+<style>
+	#main{
+    border:3px solid green;
+    width:100px;
+    height:100px;
+    text-align:center;
+	}
+
+	form{
+		width:250px;
+		height:75px;
+		}
+		
+	#wrapper {
+		width:85%;
+		margin:0 auto;
+		border:1px solid green;
+		
+		padding:7px 20px;
+		}
+	h1 {
+		color: green;
+		}
+		
+	h2 {
+		color: #030;
+		}
+	
+	section.lab1 {	
+		width:50%;
+		min-width:325px;
+		border:3px green solid;
+		padding-left:12px;
+		margin:17px 12px;
+		background-color: #666;
+		}
+		
+	body {
+		background-color:black;
+		}
+		
+	#circle {
+		width:100px;
+		height:100px;
+		border-radius:50%;
+		background:green;
+		text-align:center;    
+		}
+</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+    <header>
+        <h1>Lab 1: Apr 8, 2014</h1>
+    </header>
+    <section id="lab1a" class="lab1">
+        <h2>Lab 1a</h2>
+        <div id="main"> Div 1</div>
+        <form>
+            <fieldset>
+                <legend>Change Box</legend>
+                <input type="text" id="user_info" />
+                <input type="button" id="button1" value="change"/>
+            </fieldset>
+        </form>
+    </section>
+    
+    <section id="lab1b" class="lab1">
+    	<h2>Lab 1b</h2>
+    	<div id="circle">Div 2 </div>
+        <form>
+            <fieldset>
+                <legend>Move Circle</legend>
+                <input type="text" id="info" />
+                <input type="button" id="button2" value= "Move it!" />
+            </fieldset>
+        </form>
+    </section>
+<script>
+	//add event handler to our form button
+	
+	document.getElementById('button1').onclick = function(){
+		
+		//create variables to store our info
+		var text = document.getElementById('user_info').value;
+		var num = parseInt(text)/3;
+	   
+		
+		//change properties of our "main" box
+		document.getElementById('main').style.width = text;
+		document.getElementById('main').style.height =num + "px";
+	}
+</script>
+<script>
+	//create shortcut vars to our DOM elements (makes easier to read code)
+var circle = document.getElementById('circle');
+var text2 = document.getElementById('info');
+var button = document.getElementById('button2');
+
+button.onclick = mover;
+
+function mover(e){
+    circle.style.marginLeft = text2.value;
+}
+</script>
+</div>
+</body>
+</html>

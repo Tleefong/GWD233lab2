@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>TLF Lab 4 (Lab 2.1)</title>
+<style>
+body{
+	font:Tahoma, Geneva, sans-serif;
+	}
+
+#main a {
+	font: 1.5em/1.2;
+	color:green;
+	margin: .5em;
+	text-decoration:none;
+	}
+	
+#pic {width:400px; height:300px; size:cover;}
+
+#caption {font: 1em/1.2; }
+
+
+</style>
+</head>
+
+<body>
+<h1>Lab 4: April 29<sup>th</sup>, 2014</h1>
+
+<nav id="main">
+	<a href="img/jamaica1.gif" title="My first image.">Pic1</a>
+    <a href="img/jamaica2.jpg" title="My second image.">Pic2</a>
+    <a href="img/jamaica3.jpg" title="My third image.">Pic3</a>
+</nav>
+
+<figure>
+<img id="pic" src="img/jamaica1.gif" alt="Gallery of Images"/>
+
+<figcaption id="caption">My first image.</figcaption>
+</figure>
+
+<script>
+	window.onload = init;
+	function init(e)
+	{
+		//this first line is to collect all the anchor tags in the nav
+		var links = document.querySelectorAll('#main a');
+		for(var i =0; i<links.length; i++){
+			links[i].onclick = changePic;
+		}	
+	}
+	
+	function changePic(e){
+		
+		e.preventDefault();
+		
+		var pic = document.querySelector('#pic')
+		var caption = document.getElementById('caption');
+		
+		pic.src = e.target.href;
+		caption.firstChild.nodeValue = e.target.title;
+		
+	}
+
+
+</script>
+</body>
+</html>

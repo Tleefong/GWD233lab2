@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>TLF Lab 2</title>
+
+<style>
+	#pic {
+		
+		}
+	
+	nav a {
+		color: #333;
+		font: 2em/2 Georgia, "Times New Roman", Times, serif;
+		text-decoration:none;
+		padding:1em;
+		}
+		
+	p {
+		color: #333;
+		font: 1.25em/1.6 Georgia, "Times New Roman", Times, serif;
+		}
+
+</style>
+</head>
+
+<body>
+	<nav id="gallery">
+   	  <a href="img/jamaica1.gif" title="Jamaican Flag">Pic1</a>
+      <a href="img/jamaica2.jpg" title="Made in Jamaica">Pic2</a>
+      <a href="img/jamaica3.jpg" title="Carnival">Pic3</a>
+    </nav>
+
+	<figure>
+  		<img id="pic" src="img/jamaica1.gif" alt="js gallery"  />
+        <figcaption id="caption">Jamaican Flag</figcaption>
+    </figure>
+	
+    <script>
+    	var gallery = document.getElementById('gallery');
+		var pic = document.querySelector('#pic');
+		var caption = document.querySelector('#caption');
+		var links = document.querySelectorAll('#gallery a');
+
+		
+		for (var i=0; i<links.length; i++){
+			
+				links[i].onclick = changePic;
+			}
+		
+		function changePic(e){				
+			
+			e.preventDefault();
+			pic.src = e.target.href;
+			caption.firstChild.nodeValue = e.target.title;						
+			
+		}
+    </script>
+</body>
+</html>

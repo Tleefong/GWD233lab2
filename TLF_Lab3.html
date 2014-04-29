@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Lab 3</title>
+<style>
+h1, h3 {
+    color:purple;
+}
+
+</style>
+</head>
+
+<body>
+<h1>Tiffanni's Library</h1>
+<h3>Hello, There! What would you like to read today?</h3>
+
+<script>
+function Book(title, author, pubDate)
+{
+    this.title = title;
+    this.author = author;
+    this.pubDate = pubDate;
+    this.goPage = function(){
+        //display requested pg
+    }
+    this.displayBook= function (){
+        
+        
+           
+        var bookTitle = document.createElement('p');
+        bookTitle.innerHTML = this.title;
+        //innerHTML vs innerText bc firefox doesn't recognize innerText
+        document.body.appendChild(bookTitle);
+        
+        var bookAuthor = document.createElement('p');
+        bookAuthor.innerHTML = this.author;
+        document.body.appendChild(bookAuthor);
+        
+        var bookPubDate = document.createElement('p');
+        bookPubDate.innerHTML = this.pubDate;
+        document.body.appendChild(bookPubDate);
+    }
+}
+
+var scriptin = new Book('Scriptin w JS', 'Wyke-Smith', '2010'); 
+
+scriptin.displayBook();
+
+var myBook = new Book('Tembe','Lee-Fong','2006');
+myBook.displayBook();
+</script>
+</body>
+</html>
